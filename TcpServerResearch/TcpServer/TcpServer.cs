@@ -35,25 +35,24 @@ namespace TcpServer
 
                     NetworkStream stream = client.GetStream();
 
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes($"What is your name ? :)\n");
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes($"Start chatting :)\n");
                     stream.Write(msg, 0, msg.Length);
-                    Console.WriteLine($"Sent : {Encoding.Default.GetString(msg)}");
 
                     int i;
                     while ((i = stream.Read(bytes, 0, bytes.Length)) != 0)
                     {
                         String data = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
-                        Console.WriteLine($"Received : {data}");
+                        Console.WriteLine($"{data}");
 
                         if(data.Contains("exit"))
                         {
                             break;
                         }
 
-                        msg = System.Text.Encoding.ASCII.GetBytes($"Hello {data}\n");
+                        string response = Console.ReadLine();
+                        msg = System.Text.Encoding.ASCII.GetBytes($"{response}\n");
 
                         stream.Write(msg, 0, msg.Length);
-                        Console.WriteLine($"Sent : {Encoding.Default.GetString(msg)}");
                     }
 
                     client.Close();

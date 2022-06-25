@@ -1,4 +1,4 @@
 ﻿using TcpServer;
 
-TcpServer.TcpServer server = new TcpServer.TcpServer(13000, "127.0.0.1", 256);
+TcpServer.TcpServer server = new TcpServer.TcpServer(13000, "0.0.0.0", 256);
 server.StartServer();
